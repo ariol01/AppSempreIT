@@ -1,5 +1,7 @@
-﻿using AppSempreIT.Models;
+﻿using AppSempreIT.Infra.Context;
+using AppSempreIT.Models;
 using AppSempreIT.Models.Interface.Repository;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -7,25 +9,26 @@ namespace AppSempreIT.Infra.Repositories
 {
     public class ProjetoRepository : IProjetoRepository
     {
-        //private readonly;
-        public ProjetoRepository()
+        private readonly DataContext _context;
+        public ProjetoRepository(DataContext context)
         {
-
+            _context = context;
         }
 
-        public Task<Projeto> Get(int id)
+        public async Task<Projeto> Get(int id)
         {
-            throw new System.NotImplementedException();
+            return await _context.Projetos.FirstOrDefaultAsync(x=>x.Id == id);
         }
 
-        public Task<IList<Projeto>> GetAll()
+        public async Task<IList<Projeto>> GetAll()
         {
-            throw new System.NotImplementedException();
+            return await _context.Projetos.ToListAsync();
         }
 
-        public Task Post(Projeto projeto)
+        public async Task Post(Projeto projeto)
         {
-            throw new System.NotImplementedException();
+            await _context.Projetos.AddAsync(projeto);
+            await _context.SaveChangesAsync();
         }
     }
 }

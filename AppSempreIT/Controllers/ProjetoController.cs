@@ -1,4 +1,5 @@
 ﻿using AppSempreIT.Models.Dtos;
+using AppSempreIT.Models.Helpers;
 using AppSempreIT.Models.Interface.Service;
 using AppSempreIT.Models.Validation;
 using Microsoft.AspNetCore.Mvc;
@@ -25,6 +26,7 @@ namespace AppSempreIT.Controllers
         public async Task<IActionResult> Get()
         {
             var projetos = await _projetoService.GetAll();
+
             if (!projetos.Any())
             {
                 return NotFound("Projeto não encontrado.");
@@ -36,20 +38,24 @@ namespace AppSempreIT.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-           var projeto =  await _projetoService.Get(id);
+            var projeto = await _projetoService.Get(id);
+
             if (projeto is null)
             {
                 return NotFound("Projeto não encontrado. Você informou o ID " + id);
             }
+
+            projeto.DataDeCriacaoDoRegistros = ConverterDataParaCulturaBrasileira.Executar(projeto.DataDeCriacaoDoRegistros);
+
             return Ok(projeto);
         }
 
         // POST api/<ProjetoController>
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] ProjetoDto projetoDto )
+        public async Task<IActionResult> Post([FromBody] ProjetoDto projetoDto)
         {
             var result = new ProjetoValidation().Validate(projetoDto);
-            
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(projetoDto);
@@ -61,9 +67,9 @@ namespace AppSempreIT.Controllers
             }
 
             var projeto = ProjetoFactory.Criar(projetoDto);
-            
+
             await _projetoService.Post(projeto);
-            
+
             return Ok(projeto);
         }
 

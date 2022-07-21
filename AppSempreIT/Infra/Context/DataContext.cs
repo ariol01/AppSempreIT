@@ -16,7 +16,7 @@ namespace AppSempreIT.Infra.Context
         {
             modelBuilder.Entity<Projeto>().HasKey(x => x.Id);
             modelBuilder.Entity<Projeto>().Property(x => x.NomeDoProjeto).IsRequired();
-            modelBuilder.Entity<Projeto>().Property(x => x.ResponsavelPeloProjeto).IsRequired();
+            modelBuilder.Entity<Projeto>().Property(x => x.ResponsavelPeloProjeto).IsRequired();           
         }
     }
 }
