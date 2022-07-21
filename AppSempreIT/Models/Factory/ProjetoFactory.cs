@@ -7,6 +7,7 @@
             return new Projeto
             {
                 NomeDoProjeto = projetoDto.NomeDoProjeto,
+                ResponsavelPeloProjeto = projetoDto.ResponsavelPeloProjeto,
                 DataDeInicio = projetoDto.DataDeInicio,
                 DataDeConclusao = projetoDto.DataDeConclusao, 
                 DataDeCriacaoDoRegistros = projetoDto.DataDeCriacaoDoRegistros,                                

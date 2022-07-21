@@ -15,6 +15,8 @@ namespace AppSempreIT.Infra.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Projeto>().HasKey(x => x.Id);
+            modelBuilder.Entity<Projeto>().Property(x => x.NomeDoProjeto).IsRequired();
+            modelBuilder.Entity<Projeto>().Property(x => x.ResponsavelPeloProjeto).IsRequired();
         }
     }
 }

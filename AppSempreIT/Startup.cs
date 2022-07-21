@@ -1,5 +1,11 @@
+using AppSempreIT.Infra.Context;
+using AppSempreIT.Infra.Repositories;
+using AppSempreIT.Models.Interface.Repository;
+using AppSempreIT.Models.Interface.Service;
+using AppSempreIT.Models.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -19,10 +25,19 @@ namespace AppSempreIT
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<DataContext>(op =>
+            {
+                op.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+            });
+
             services.AddControllers();
+
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "My Api", Version = "v1" });
             });
+
+            services.AddScoped<IProjetoService, ProjetoService>();
+            services.AddScoped<IProjetoRepository, ProjetoRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
