@@ -13,6 +13,6 @@ namespace AppSempreIT.Models.Dtos
         public string ResponsavelPeloProjeto { get; set; }
         public DateTime DataDeInicio { get; set; }
         public DateTime DataDeConclusao { get; set; }
-        public string DataDeCriacaoDoRegistros { get; set; } = DateTime.Now.ToString("yyyyMMddHHmmssffff");
+        public string DataDeCriacaoDoRegistros { get; set; } = DateTime.Now.ToLongDateString();
     }
 }

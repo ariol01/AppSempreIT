@@ -45,7 +45,7 @@ namespace AppSempreIT.Controllers
                 return NotFound("Projeto não encontrado. Você informou o ID " + id);
             }
 
-            projeto.DataDeCriacaoDoRegistros = ConverterDataParaCulturaBrasileira.Executar(projeto.DataDeCriacaoDoRegistros);
+            //projeto.DataDeCriacaoDoRegistros = ConverterDataParaCulturaBrasileira.Executar(projeto.DataDeCriacaoDoRegistros);
 
             return Ok(projeto);
         }
