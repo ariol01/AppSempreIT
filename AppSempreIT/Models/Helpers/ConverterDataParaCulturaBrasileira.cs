@@ -5,10 +5,11 @@ namespace AppSempreIT.Models.Helpers
 {
     public static class ConverterDataParaCulturaBrasileira
     {
-        public static string Executar(string data)
+        public static DateTime Executar(DateTime data)
         {
-            var dateTime = Convert.ToDateTime(data);
-            return dateTime.ToLongDateString();
+            CultureInfo idioma = new CultureInfo("pt-BR");
+            var dateTime = Convert.ToDateTime(data.ToString("D",idioma));
+            return dateTime;
         }
     }
 }
