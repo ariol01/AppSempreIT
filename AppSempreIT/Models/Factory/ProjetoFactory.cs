@@ -8,8 +8,8 @@
             {
                 NomeDoProjeto = projetoDto.NomeDoProjeto,
                 ResponsavelPeloProjeto = projetoDto.ResponsavelPeloProjeto,
-                DataDeInicio = projetoDto.DataDeInicio,
-                DataDeConclusao = projetoDto.DataDeConclusao, 
+                DataDeInicio = projetoDto.DataDeInicio.Date,
+                DataDeConclusao = projetoDto.DataDeConclusao.Date, 
                 DataDeCriacaoDoRegistros = projetoDto.DataDeCriacaoDoRegistros,                                
             };
         }
