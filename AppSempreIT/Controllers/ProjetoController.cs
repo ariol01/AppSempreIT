@@ -13,6 +13,7 @@ namespace AppSempreIT.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Produces("application/json")]
     public class ProjetoController : ControllerBase
     {
         private readonly IProjetoService _projetoService;
